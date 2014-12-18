@@ -1,0 +1,272 @@
+<!--
+
+This is a prototype layout for snestracker for rapid development.
+Items here will be ported to SDL.
+
+MIT License, Electronoob.
+-->
+<html>
+    <head>
+        <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.12/jquery.mousewheel.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jScrollPane/2.0.14/jquery.jscrollpane.min.js"></script>
+        <script>
+            $( document ).ready(function() {
+                var i;
+                for (i=0; i<255; i++) {
+                    $("#rowid1").append(i.toString(16).toUpperCase() + "<br>");
+                    $("#rowid2").append(i.toString(16).toUpperCase() + "<br>");
+                }
+                $('.scroll-pane').jScrollPane();
+            });
+        </script>
+        <link href='http://fonts.googleapis.com/css?family=Press+Start+2P' rel='stylesheet' type='text/css'>        <style>
+            body {
+                padding: 50px;
+                background-color: #222233;
+                -webkit-touch-callout: none;
+                -webkit-user-select: none;
+                -khtml-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+                cursor:default;
+                background-image: linear-gradient(
+                    rgba(100, 0, 100, 0.8), 
+                    rgba(200, 0, 10, 0.8)
+                ), url();
+               
+            }
+            div.container {
+                height: 400px;
+                width: 930px;
+                background-color:#000;
+                border: 20px solid #331020;
+                clear:left;
+                padding: 10px;
+            }
+            div.trackgeneric {
+                background-color: #000055;
+                border-right: 3px solid #202080;
+                line-height: 20px;
+            }
+            div.separator {
+                width:20px;
+                float: left;
+                height: 500px;
+            }
+            div.rowid {
+                width:30px;
+                float: left;
+                height: 500px;
+                background-color: #331020;
+                color: #fff;
+                line-height: 20px;
+                text-align:right;
+                font-family: 'Press Start 2P', cursive;
+                font-size: 12px;
+            }
+            div.rowid1 {
+                text-align:right;
+            }
+            div.rowid2 {
+                text-align:left;
+            }
+            div.track1 {
+                width:200px;
+                float: left;
+                height: 500px;
+            }   
+            div.track2 {
+                width:200px;
+                float: left;
+                height: 500px;
+            }   
+            div.track3 {
+                width:200px;
+                float: left;
+                height: 500px;
+            }   
+            div.track4 {
+                width:200px;
+                float: left;
+                height: 500px;
+            }
+            div.toolbar {
+                border: 20px solid #331020;
+                background-color: #000;
+                float:left;
+                margin-bottom: 20px;
+                padding: 5px;
+            }
+            div.transport {
+                width: 60px;
+                height: 60px;
+                float: left;
+                margin: 4px;
+/*                -webkit-border-radius: 6px;
+                -moz-border-radius: 6px;
+                border-radius: 6px;*/
+                border:10px solid #505050;
+                background-color:#000055;
+                -webkit-box-shadow: #cccccc 1px 1px 1px;
+                -moz-box-shadow: #cccccc 1px 1px 1px;
+                box-shadow: #cccccc 1px 1px 1px;
+            }
+            .blockshadow {
+                -webkit-box-shadow: #442040 10px 10px 0px;
+                -moz-box-shadow: #442040 10px 10px 0px;
+                box-shadow: #442040 10px 10px 0px;
+            }
+        </style>
+        <style>
+            /*
+             * CSS Styles that are needed by jScrollPane for it to operate correctly.
+             *
+             * Include this stylesheet in your site or copy and paste the styles below into your stylesheet - jScrollPane
+             * may not operate correctly without them.
+             */
+            .jspContainer
+            {
+                overflow: hidden;
+                position: relative;
+            }
+
+            .jspPane
+            {
+                position: absolute;
+            }
+
+            .jspVerticalBar
+            {
+                position: absolute;
+                top: 0;
+                right: 0;
+                width: 16px;
+                height: 100%;
+                background: red;
+            }
+
+            .jspHorizontalBar
+            {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                height: 16px;
+                background: red;
+            }
+
+            .jspCap
+            {
+                display: none;
+            }
+
+            .jspHorizontalBar .jspCap
+            {
+                float: left;
+            }
+
+            .jspTrack
+            {
+                background: #000;
+                position: relative;
+            }
+
+            .jspDrag
+            {
+                background: #202080;
+                position: relative;
+                top: 0;
+                left: 0;
+                cursor: pointer;
+            }
+
+            .jspHorizontalBar .jspTrack,
+            .jspHorizontalBar .jspDrag
+            {
+                float: left;
+                height: 100%;
+            }
+
+            .jspArrow
+            {
+                background: #50506d;
+                text-indent: -20000px;
+                display: block;
+                cursor: pointer;
+                padding: 0;
+                margin: 0;
+            }
+
+            .jspArrow.jspDisabled
+            {
+                cursor: default;
+                background: #80808d;
+            }
+
+            .jspVerticalBar .jspArrow
+            {
+                height: 16px;
+            }
+
+            .jspHorizontalBar .jspArrow
+            {
+                width: 16px;
+                float: left;
+                height: 100%;
+            }
+
+            .jspVerticalBar .jspArrow:focus
+            {
+                outline: none;
+            }
+
+            .jspCorner
+            {
+                background: #eeeef4;
+                float: left;
+                height: 100%;
+            }
+
+            /* Yuk! CSS Hack for IE6 3 pixel bug :( */
+            * html .jspCorner
+            {
+                margin: 0 -3px 0 0;
+            }        
+        </style>
+        <style>
+            .scroll-pane
+            {
+                overflow:hidden;
+                width: 932px;
+                height: 400px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="toolbar" class="toolbar blockshadow">
+            <div id="record" class="transport record"></div>
+            <div id="play" class="transport play"></div>
+            <div id="pause" class="transport pause"></div>
+            <div id="stop" class="transport stop"></div>
+            <div id="rewind" class="transport rewind"></div>
+            <div id="fast-forward" class="transport fast-forward"></div>
+            <div id="skip-previous" class="transport skip-previous"></div>
+            <div id="skip-next" class="transport skip-next"></div>
+            <div id="eject" class="transport eject"></div>
+        </div>
+        <div id="container" class="container blockshadow">
+            <div id="scroll-pane" class="scroll-pane">
+                <div id="rowid1" class="rowid rowid1"></div>
+                <div id="separator" class="separator"></div>
+                <div id="track1"  class="trackgeneric track1"></div>
+                <div id="track2"  class="trackgeneric track2"></div>
+                <div id="track3"  class="trackgeneric track3"></div>
+                <div id="track4"  class="trackgeneric track4"></div>
+                <div id="separator" class="separator"></div>
+                <div id="rowid2" class="rowid rowid2"></div>
+            </div>
+        </div>
+    </body>
+</html>
